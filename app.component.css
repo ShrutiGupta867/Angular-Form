@@ -1,0 +1,41 @@
+h1{
+    color: blue;
+}
+input.ng-invalid{
+    border-left: 5px solid red;
+}
+input.ng-valid{
+    border-left: 5px solid green;
+}
+.red-error{
+    color: red;
+}
+form{
+    /* border-color: blue;  */
+    border-width:5px; 
+    border-style:solid;
+    margin: auto;
+    padding: 50px;
+    border-style: inset;
+    background-color: skyblue;
+}
+.btn-space {
+    margin-right: 20px;
+}
+#month, #date{
+    width: 10%;
+    padding: auto;
+
+}
+#year{
+    width: 15%;
+}
+.cbox{
+    border: 5px solid;
+}
+.arow{
+    border: 10px solid burlywood;
+}
+.nowrap {
+    white-space: nowrap ;
+  }

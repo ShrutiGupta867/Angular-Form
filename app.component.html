@@ -1,0 +1,217 @@
+
+
+<div class="container" style="text-align:center;background-color: rgb(191, 172, 202);" cbox>
+  <div class="row arow">
+
+    <h2 style="text-align:center; color:rgb(211, 36, 36);"><strong>User Details</strong>  </h2>
+    <div class="btn row" style="text-align:center;font-weight:bolder;font-size: larger;">
+      <button (click)="toggle1()" id="bt1" class="btn btn-info btn btn-space btn-lg">{{buttonName1}}</button>
+      <button (click)="toggle2()" id="bt2" class="btn btn-info btn btn-space btn-lg">{{buttonName2}}</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+
+      <ng-container *ngIf="data1=='formData'">
+          <!-- <div class='container pt-5'  >
+      
+      <div class="row justify-content-sm-center pt-5">
+        <div class="col-sm-6 shadow round pb-3"> -->
+          <div style="background-color: rgba(85, 97, 94, 0.562); ">
+          <h1 class="text-center pt-3 text-secondary nowrap" style="width:5px;">User Registration Form</h1>
+            </div>
+          <form [formGroup]='formData' (ngSubmit)='onClickSubmit()' class="border-secondary">
+
+
+            <div class='form-group'>
+              <label for='fsname'>First Name </label>
+              <input formControlName='fsname' type="text" class='form-control'>
+              <div *ngIf='f.fsname.touched && f.fsname.invalid' class="alert alert-danger">
+                <div *ngIf='f.fsname.errors.required'>First Name is reqquired</div>
+                <div *ngIf='f.fsname.errors.minlength'>First Name should be 3 character</div>
+              </div> 
+            </div>
+
+
+            <div class='form-group'>
+              <label for='lsname'>Last Name </label>
+              <input formControlName='lsname' type="text" class='form-control' placeholder="Last Name">
+              <div *ngIf="f.lsname.touched && f.lsname.invalid" class="alert alert-danger">
+                <div *ngIf='f.lsname.errors.required'>Last Name is required</div>
+              </div>
+            </div>
+
+            <div class='form-group'>
+              <label for='dob'>Date of Brith :</label><br>
+              <script $scope.dob="YYYY-MM-DD"></script>
+
+              <!-- <label for="date_of_birth">Date of Birth:</label> -->
+              <!-- <input formControlName='dob' type="text" name="dob" ng-model="udob" placeholder="YYYY-MM-DD" ng-pattern="datepattern"required />
+            <div *ngIf="f.dob.touched && f.dob.invalid" class="alert alert-danger">
+            <div ng-show="f.dob.$error.required" ng-style="{color:'red'}">Date of birth is required</div>
+            <div ng-show="f.dob.$error.pattern" ng-style="{color:'red'}">Birth must be in the format of YYYY-MM-DD</div>
+            </div>
+          </div> -->
+
+              <input formControlName='dob' type="text" placeholder="YYYY-MM-DD" class='form-control'>
+
+
+              <div *ngIf="f.dob.touched && f.dob.invalid" class="alert alert-danger">
+                <div *ngIf='f.dob.errors.required'>Date of Brith is required</div>
+                <div *ngIf='f.dob.errors.pattern'>Birth must be in the format of YYYY-MM-DD</div>
+              </div>
+            </div>
+
+
+            <div class='form-group'>
+              <label for='phone'>Phone No. </label>
+              <input formControlName='phone' type="number" class='form-control' placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required >
+
+              <div *ngIf='f.phone.touched && f.phone.invalid' class="alert alert-danger">
+                <div *ngIf='f.phone.errors.required'>Phone no is Required</div>
+                <div *ngIf='f.phone.errors.minlength'>Only 10 length,numbers are only allowed</div>
+              </div>
+
+              <!-- <div *ngIf='f.phone.touched && f.phone.invalid' class='alert alert-danger'>
+          <div *ngIf='f.phone.errors.required'>Phone no is Required</div>
+          <div *ngIf='f.phone.errors.minlength'>Only 10 length,numbers are only allowed</div>
+          </div> -->
+            </div>
+
+
+            <div class='form-group'>
+              <label for='address'>Address </label>
+              <textarea formControlName='address' type="text" placeholder="Address" class='form-control'></textarea>
+
+              <div *ngIf="f.address.touched && f.address.invalid" class="alert alert-danger form-control is-invalid">
+                <div *ngIf='f.address.errors.required'>Address is required</div>
+              </div>
+            </div>
+
+            <div class='form-group'>
+              <label for='email'>Email id </label>
+              <input formControlName='email' type="text" placeholder="Email" class='form-control'>
+
+              <div *ngIf='f.email.touched && f.email.invalid' class="alert alert-danger">
+                <div *ngIf='f.email.errors.required'>Email is required</div>
+                <div *ngIf='f.email.errors.email'>Plaese enter valid email</div>
+              </div>
+
+            </div>
+
+            <button class="btn btn-primary" type='submit'>Submit</button>
+
+          </form>
+        </ng-container>
+      </div>
+  </div>
+</div>
+
+
+
+
+<ng-container *ngIf="table" >
+  <div class="container table-responsive-sm">
+  <table border="1" class="table table-success table-bordered border-primary align-middle" >
+  <thead>
+    <tr class="table-success" style="text-align: center;">
+      <th scope="col" class="text-right">S.No.</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Date of Brith</th>
+      <th scope="col">Phone No.</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+
+    </tr>
+    </thead>
+    
+
+    <tbody>
+    <tr *ngFor="let i of userData; index as j">
+      <th scope="row" class="table-success">{{ j }}</th>
+      <td class="table-success">{{i.fsname}}</td>
+      <td class="table-success">{{i.lsname}}</td>
+      <td class="table-success">{{i.dob}}</td>
+      <td class="table-success">{{i.phone}}</td>
+      <td class="table-success">{{i.address}}</td>
+      <td class="table-success">{{i.email}}</td>
+
+
+      <button (click)='editUser(j)' type="button" class="btn btn-info">Edit</button>
+      <button (click)='deleteUser(j)' type="button" class="btn btn-danger">Delete</button>
+
+    </tr>
+  </tbody>
+
+  </table>
+  </div>
+
+</ng-container>
+<div style="margin: 0 auto;text-align: left;"></div>
+<!-- <serDataService></serDataService> -->
+
+
+
+<!-- Updation Form -->
+<div class='col-md-6'>
+
+  <ng-container *ngIf="data1=='form1'">
+    <div class='container pt-5'>
+      <div class="row justify-content-sm-center pt-5">
+        <div class="col-sm-6 shadow round pb-3">
+          <h1 class="text-center pt-3 text-secondary">User Updations Form</h1>
+
+          <form [formGroup]='form1' (ngSubmit)='update()'>
+
+            <div class='form-group'>
+              <label for='fsname'>First Name </label>
+              <input formControlName='fsname' type="text" class='form-control'>
+
+            </div>
+
+
+
+            <div class='form-group'>
+              <label for='lsname'>Last Name </label>
+              <input formControlName='lsname' type="text" class='form-control'>
+            </div>
+
+            <div class='form-group'>
+              <label for='dob'>Date of Brith </label>
+              <input formControlName='dob' type="text" class='form-control'>
+            </div>
+
+            <div class='form-group'>
+              <label for='phone'>Phone No. </label>
+              <input formControlName='phone' type="number" class='form-control'>
+
+            </div>
+
+
+            <div class='form-group'>
+              <label for='address'>Address </label>
+              <textarea formControlName='address' type="text" class='form-control'></textarea>
+
+            </div>
+
+            <div class='form-group'>
+              <label for='email'>Email id </label>
+              <input formControlName='email' type="text" class='form-control'>
+
+            </div>
+
+            <button class="btn btn-primary" type='update'>Update</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>
